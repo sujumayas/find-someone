@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Stocastic Test</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<canvas id="blackboard" width="600" height="400"></canvas>
+	<script>
+		var canvas = document.getElementById('blackboard');
+		var ctx = canvas.getContext('2d');
+
+		var width = canvas.width = window.innerWidth;
+		var height = canvas.height = window.innerHeight;
+
+		
+		ctx.font="35px Verdana";
+		
+
+		var verbs = ['grab', 'lift up', 'remove', 'win over', 'destroy', 'recruit', 'forget', 'write']
+		var something = ['raccoons', 'the garbage', 'the piramids', 'pirates', 'python code']
+		var form = ['while in underwear', 'naked','standing in one foot', 'screaming I love you', 'with you', 'without you', 'singing your name', 'crawling']
+
+		function randomChoice(arr) {
+		    return arr[Math.floor(arr.length * Math.random())];
+		}
+
+		function render(){
+			ctx.fillStyle = "rgb(0,0,0)";
+			ctx.fillRect(0, 0, width, height);
+			ctx.fillStyle = "rgb("+Math.floor(255 * Math.random())+","+Math.floor(255 * Math.random())+","+Math.floor(255 * Math.random())+")";
+			x = (width/2)-200;
+			y = (height/2)-100;
+			paintTheLetters(x, y);
+		}
+
+		function paintTheLetters(x,y){
+			ctx.fillText("",x,y+10);
+			ctx.fillText('Find someone who ',x,y+60);
+			ctx.fillText('	can '+ randomChoice(verbs) +' '+ randomChoice(something),x,y+105);
+			ctx.fillText('		'+ randomChoice(form),x,y+150);
+			ctx.fillText('',x,y+195);
+		}
+		render();
+		setInterval(function(){ render(); }, 6000);
+
+
+	</script>
+	<style>
+		html,body{
+			margin:0;
+			padding:0;
+		}
+	</style>
+</body>
+</html>
